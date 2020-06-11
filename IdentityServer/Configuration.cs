@@ -42,6 +42,7 @@ namespace IdentityServer
                 new Client
                 {
                     AllowedGrantTypes = GrantTypes.Code,
+                    AllowOfflineAccess = true,
                     AllowedScopes =
                     {
                         "ApiOne",
