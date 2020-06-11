@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiOne", "ApiOne\ApiOne.csproj", "{688B239D-A38F-4B82-BBE1-94B5CAA3FB6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTwo", "ApiTwo\ApiTwo.csproj", "{055D2A7E-26E5-4586-91A3-6E0816189E5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTwo", "ApiTwo\ApiTwo.csproj", "{055D2A7E-26E5-4586-91A3-6E0816189E5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient", "MvcClient\MvcClient.csproj", "{1E735598-9327-48AF-862E-37A2C7EC6846}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcClient", "MvcClient\MvcClient.csproj", "{1E735598-9327-48AF-862E-37A2C7EC6846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavascriptClient", "JavascriptClient\JavascriptClient.csproj", "{C565FD11-CE77-4542-9EA5-10DFF10710C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1E735598-9327-48AF-862E-37A2C7EC6846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E735598-9327-48AF-862E-37A2C7EC6846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E735598-9327-48AF-862E-37A2C7EC6846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C565FD11-CE77-4542-9EA5-10DFF10710C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C565FD11-CE77-4542-9EA5-10DFF10710C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C565FD11-CE77-4542-9EA5-10DFF10710C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C565FD11-CE77-4542-9EA5-10DFF10710C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -57,6 +57,19 @@ namespace IdentityServer
                     RedirectUris = { "https://localhost:44385/signin-oidc" },
                     RequireConsent = false,
                 },
+                new Client
+                {
+                    AllowAccessTokensViaBrowser = true,
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedScopes =
+                    {
+                        "ApiOne",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                    },
+                    ClientId = "client_id_js",
+                    RedirectUris = { "https://localhost:44335/home/signin" },
+                    RequireConsent = false,
+                },
             };
     }
 }
