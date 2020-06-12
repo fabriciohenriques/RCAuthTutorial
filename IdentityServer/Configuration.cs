@@ -60,13 +60,16 @@ namespace IdentityServer
                 },
                 new Client
                 {
+                    AccessTokenLifetime = 1,
                     AllowAccessTokensViaBrowser = true,
                     AllowedCorsOrigins = { "https://localhost:44335" },
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowedScopes =
                     {
                         "ApiOne",
+                        "ApiTwo",
                         IdentityServerConstants.StandardScopes.OpenId,
+                        "rc.scope",
                     },
                     ClientId = "client_id_js",
                     RedirectUris = { "https://localhost:44335/home/signin" },

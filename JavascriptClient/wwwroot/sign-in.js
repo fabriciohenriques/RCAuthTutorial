@@ -1,4 +1,4 @@
-﻿var userManager = new Oidc.UserManager();
+﻿var userManager = new Oidc.UserManager({ userStore: new Oidc.WebStorageStateStore({ store: window.localStorage })});
 
 userManager.signinCallback().then(res => {
     console.log(res);
