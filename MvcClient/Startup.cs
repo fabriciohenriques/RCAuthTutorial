@@ -34,6 +34,7 @@ namespace MvcClient
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.ResponseType = "code";
                 options.SaveTokens = true;
+                options.SignedOutCallbackPath = "/Home/Index";
                 
                 options.Scope.Clear();
                 options.Scope.Add("openid");

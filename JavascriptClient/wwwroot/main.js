@@ -1,6 +1,7 @@
 ﻿var oidcConfig = {
     authority: "https://localhost:44382/",
     client_id: "client_id_js",
+    post_logout_redirect_uri: "https://localhost:44335/Home/Index",
     redirect_uri: "https://localhost:44335/Home/SignIn",
     response_type: "id_token token",
     scope: "openid ApiOne ApiTwo rc.scope",
@@ -25,6 +26,10 @@ var callApiOne = function () {
     axios.get('https://localhost:44371/secret').then(res => {
         console.log(res);
     });
+};
+
+var signOut = function () {
+    userManager.signoutRedirect();
 };
 
 var refreshing = false;

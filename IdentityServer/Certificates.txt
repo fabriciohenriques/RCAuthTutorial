@@ -1,0 +1,1 @@
+﻿https://docs.microsoft.com/en-us/archive/blogs/kaevans/using-powershell-with-certificates
