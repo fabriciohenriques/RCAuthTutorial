@@ -34,6 +34,7 @@ namespace IdentityServer
             {
                 new Client
                 {
+                    AllowedCorsOrigins = { "https://localhost:44335" },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = {"ApiOne"},
                     ClientId = "client_id",
@@ -60,6 +61,7 @@ namespace IdentityServer
                 new Client
                 {
                     AllowAccessTokensViaBrowser = true,
+                    AllowedCorsOrigins = { "https://localhost:44335" },
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowedScopes =
                     {

@@ -16,6 +16,14 @@ namespace ApiOne
                     options.Audience = "ApiOne";
                 });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                    policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             services.AddControllers();
         }
 
@@ -27,6 +35,8 @@ namespace ApiOne
             //}
 
             app.UseRouting();
+
+            app.UseCors("AllowAll");
 
             app.UseAuthentication();
             app.UseAuthorization();
