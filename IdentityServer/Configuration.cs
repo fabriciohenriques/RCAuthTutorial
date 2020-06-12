@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace IdentityServer
 {
-    public static class Configuration
+    public static class Config
     {
-        public static IEnumerable<IdentityResource> GetIdentityResources() =>
+        public static IEnumerable<IdentityResource> Ids() =>
             new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
@@ -22,14 +22,14 @@ namespace IdentityServer
                 },
             };
 
-        public static IEnumerable<ApiResource> GetApis() =>
+        public static IEnumerable<ApiResource> Apis() =>
             new List<ApiResource>
             {
                 new ApiResource("ApiOne"),
                 new ApiResource("ApiTwo", new string[] { "rc.api.grandma" }),
             };
 
-        public static IEnumerable<Client> GetClients() =>
+        public static IEnumerable<Client> Clients() =>
             new List<Client>()
             {
                 new Client

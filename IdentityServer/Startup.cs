@@ -3,18 +3,26 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace IdentityServer
 {
     public class Startup
     {
+        readonly IConfiguration configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseInMemoryDatabase("Memory");
+                options.UseSqlServer(connectionString);
             });
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -34,11 +42,23 @@ namespace IdentityServer
                 options.LoginPath = "/Auth/Login";
             });
 
+            var migrationsAssembly = typeof(Startup).Assembly.GetName().Name;
+
             services.AddIdentityServer()
                 .AddAspNetIdentity<IdentityUser>()
-                .AddInMemoryApiResources(Configuration.GetApis())
-                .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
-                .AddInMemoryClients(Configuration.GetClients())
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                        sql => sql.MigrationsAssembly(migrationsAssembly));
+                })
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                        sql => sql.MigrationsAssembly(migrationsAssembly));
+                })
+                //.AddInMemoryApiResources(Configuration.GetApis())
+                //.AddInMemoryIdentityResources(Configuration.GetIdentityResources())
+                //.AddInMemoryClients(Configuration.GetClients())
                 .AddDeveloperSigningCredential();
 
             services.AddControllersWithViews();
@@ -46,6 +66,7 @@ namespace IdentityServer
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //InitializeDatabase(app);
             //if (env.IsDevelopment())
             //{
             //    app.UseDeveloperExceptionPage();
@@ -60,5 +81,40 @@ namespace IdentityServer
                 endpoints.MapDefaultControllerRoute();
             });
         }
+
+        //void InitializeDatabase(IApplicationBuilder app)
+        //{
+        //    using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+        //    {
+        //        var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+                
+        //        if (!context.Clients.Any())
+        //        {
+        //            foreach (var client in Config.Clients())
+        //            {
+        //                context.Clients.Add(client.ToEntity());
+        //            }
+        //            context.SaveChanges();
+        //        }
+
+        //        if (!context.IdentityResources.Any())
+        //        {
+        //            foreach (var resource in Config.Ids())
+        //            {
+        //                context.IdentityResources.Add(resource.ToEntity());
+        //            }
+        //            context.SaveChanges();
+        //        }
+
+        //        if (!context.ApiResources.Any())
+        //        {
+        //            foreach (var resource in Config.Apis())
+        //            {
+        //                context.ApiResources.Add(resource.ToEntity());
+        //            }
+        //            context.SaveChanges();
+        //        }
+        //    }
+        //}
     }
 }
