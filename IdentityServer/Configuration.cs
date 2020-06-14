@@ -58,6 +58,7 @@ namespace IdentityServer
                     PostLogoutRedirectUris = { "https://localhost:44385/Home/Index" },
                     RedirectUris = { "https://localhost:44385/signin-oidc" },
                     RequireConsent = false,
+                    RequirePkce = true,
                 },
                 new Client
                 {
@@ -76,6 +77,7 @@ namespace IdentityServer
                     PostLogoutRedirectUris = { "https://localhost:44335/Home/Index" },
                     RedirectUris = { "https://localhost:44335/home/signin" },
                     RequireConsent = false,
+                    RequirePkce = true,
                 },
             };
     }

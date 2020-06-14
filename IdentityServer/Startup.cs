@@ -1,11 +1,16 @@
 using IdentityServer.Data;
+using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.IO;
+using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 
 namespace IdentityServer
@@ -76,10 +81,10 @@ namespace IdentityServer
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //InitializeDatabase(app);
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseRouting();
 
@@ -96,7 +101,7 @@ namespace IdentityServer
         //    using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
         //    {
         //        var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-                
+
         //        if (!context.Clients.Any())
         //        {
         //            foreach (var client in Config.Clients())

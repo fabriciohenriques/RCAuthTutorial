@@ -3,7 +3,7 @@
     client_id: "client_id_js",
     post_logout_redirect_uri: "https://localhost:44335/Home/Index",
     redirect_uri: "https://localhost:44335/Home/SignIn",
-    response_type: "id_token token",
+    response_type: "code",
     scope: "openid ApiOne ApiTwo rc.scope",
     userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
 };
